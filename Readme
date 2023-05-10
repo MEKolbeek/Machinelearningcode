@@ -1,2 +1,6 @@
 Hi Abdi, ik heb alles nu in deze repo gezet. In Test zit mijn machinelearning algoritme die ik buiten Unity om heb gemaakt. 
-DatasetML.zip daar zit de dataset in
+DatasetML.zip daar zit de dataset in met coordinaten voor ml
+Dataset.zip is het stuk in unity wat ik al gemaakt heb met wat scriptjes die ik gebruikt heb voor het creeren van de dataset
+Unity-HelloMLNET.zip is de package voor ML.Net die geschikt is voor Unity maar waar dus niet mijn specifieke algoritme in zit.
+Ik hoop dat je hier wat aan hebt en please laat het weten als je vragen hebt!
+Tnx!
