@@ -1,0 +1,6 @@
+packages/Microsoft.ML.Mkl.Redist.2.0.1/Microsoft.ML.Mkl.Redist.2.0.1.nupkg filter=lfs diff=lfs merge=lfs -text
+packages/Microsoft.ML.Mkl.Redist.2.0.1/runtimes/osx-x64/native/libMklImports.dylib filter=lfs diff=lfs merge=lfs -text
+Test[[:space:]]2/bin/Debug/DnnImageModels/AlexNetOnnx/AlexNet.onnx filter=lfs diff=lfs merge=lfs -text
+Test[[:space:]]2/bin/Debug/DnnImageModels/ResNet101Onnx/ResNet101.onnx filter=lfs diff=lfs merge=lfs -text
+packages/Microsoft.ML.DnnImageFeaturizer.ResNet101.0.20.1/Microsoft.ML.DnnImageFeaturizer.ResNet101.0.20.1.nupkg filter=lfs diff=lfs merge=lfs -text
+packages/Microsoft.ML.DnnImageFeaturizer.AlexNet.0.20.1/Microsoft.ML.DnnImageFeaturizer.AlexNet.0.20.1.nupkg filter=lfs diff=lfs merge=lfs -text
