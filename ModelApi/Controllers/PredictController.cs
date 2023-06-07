@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.ML;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace ModelApi.Controllers
 {
@@ -8,7 +9,7 @@ namespace ModelApi.Controllers
     [Route("[controller]")]
     public class PredictController : ControllerBase
     {
-        private static string modelPath = @"D:\Programming\C#\Machinelearningcode\DatasetML\LightGBMmodel.zip"; 
+        private static string modelPath = @"C:\Users\mkolb\Documents\LightGBMmodel.zip"; 
         private static MLContext mlContext = new MLContext();
         private static ITransformer model;
 
@@ -23,15 +24,18 @@ namespace ModelApi.Controllers
             string jsonData = LogHandGestureData(data);
             var predictionEngine = mlContext.Model.CreatePredictionEngine<HandGestureNumber, HandGesturePrediction>(model);
             var prediction = predictionEngine.Predict(data);
-            return Ok(new { jsonData = jsonData, /*prediction = prediction.PredictedGestureNumber*/ });
+
+            int predictedGestureNumber = prediction.cijfer; // Haal de voorspelde integer-waarde op uit de "cijfer" kolom
+
+           Debug.WriteLine($"Voorspelde handgebaar nummer: {predictedGestureNumber}"); // Geef de waarde weer in de debug-output
+
+            return Ok(new { jsonData = jsonData });
         }
 
-
-
-        private string LogHandGestureData(HandGestureNumber data)
+                private string LogHandGestureData(HandGestureNumber data)
         {
             var jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
-            Console.WriteLine(jsonData);
+            Debug.WriteLine(jsonData);
             return jsonData;
 
         }

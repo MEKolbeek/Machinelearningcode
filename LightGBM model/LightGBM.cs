@@ -22,7 +22,7 @@ namespace LightGBM
         public float Label { get; set; }
     }
 
-    class Program
+    class LightGBM
     {
         static void Main(string[] args)
         {
