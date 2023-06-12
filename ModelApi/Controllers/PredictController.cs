@@ -9,7 +9,7 @@ namespace ModelApi.Controllers
     [Route("[controller]")]
     public class PredictController : ControllerBase
     {
-        private static string modelPath = @"C:\Users\mkolb\Documents\LightGBMmodel.zip"; 
+        private static string modelPath = @"C:\Users\mkolb\Documents\LightGBMmodel.zip";
         private static MLContext mlContext = new MLContext();
         private static ITransformer model;
 
@@ -19,25 +19,24 @@ namespace ModelApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> Post([FromBody] HandGestureNumber data)
+        public ActionResult<string> Post([FromBody] HandGestureData data)
         {
             string jsonData = LogHandGestureData(data);
-            var predictionEngine = mlContext.Model.CreatePredictionEngine<HandGestureNumber, HandGesturePrediction>(model);
+            var predictionEngine = mlContext.Model.CreatePredictionEngine<HandGestureData, HandGesturePrediction>(model);
             var prediction = predictionEngine.Predict(data);
 
-            int predictedGestureNumber = prediction.cijfer; // Haal de voorspelde integer-waarde op uit de "cijfer" kolom
+            int predictedGestureNumber = (int)prediction.Label;
 
-           Debug.WriteLine($"Voorspelde handgebaar nummer: {predictedGestureNumber}"); // Geef de waarde weer in de debug-output
+            Debug.WriteLine($"Voorspelde handgebaar nummer: {predictedGestureNumber}");
 
             return Ok(new { jsonData = jsonData });
         }
 
-                private string LogHandGestureData(HandGestureNumber data)
+        private string LogHandGestureData(HandGestureData data)
         {
             var jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
             Debug.WriteLine(jsonData);
             return jsonData;
-
         }
     }
 }

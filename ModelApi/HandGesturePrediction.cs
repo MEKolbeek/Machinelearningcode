@@ -4,8 +4,8 @@ namespace ModelApi
 {
     public class HandGesturePrediction
     {
-        [ColumnName("cijfer")]
-        public int cijfer;
+        [ColumnName("Cijfer")]
+        public int Label;
 
         public float[] Score;
     }
