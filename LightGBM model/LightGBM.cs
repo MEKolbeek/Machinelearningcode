@@ -38,23 +38,20 @@ namespace LightGBM
             var trainData = split.TrainSet;
             var testData = split.TestSet;
 
-
-            // Definieer de pipeline van het model
+            // efinieer de pipeline van het model
             var pipeline = mlContext.Transforms.Conversion.MapValueToKey("Label")
                 // De kolom "Label" wordt geconverteerd naar een numerieke sleutel (key)
                 // Dit is vereist voor multiclass classificatie
-                .Append(mlContext.Transforms.Concatenate("Features", nameof(HandGestureData.Features))) //niet noodzakelijk
-                                                                                                        // Combineer de kolommen met de functies in een enkele kolom genaamd "Features"
+                .Append(mlContext.Transforms.Concatenate("Features", nameof(HandGestureData.Features)))  // Combineer de kolommen met de functies in een enkele kolom genaamd "Features"
                                                                                                         // Dit is vereist omdat LightGBM alleen werkt met een enkele kolom voor de functies
-                .Append(mlContext.Transforms.NormalizeMinMax("Features")) //niet noodzakelijk
-                                                                          // Normaliseer de waarden in de "Features" kolom zodat ze binnen een bepaalde range liggen
+                .Append(mlContext.Transforms.NormalizeMinMax("Features")) // Normaliseer de waarden in de "Features" kolom zodat ze binnen een bepaalde range liggen
                                                                           // Dit helpt de algoritmes beter te presteren
 
                 .Append(mlContext.MulticlassClassification.Trainers.LightGbm(new LightGbmMulticlassTrainer.Options()
                 {
                     NumberOfLeaves = 8,
                     MinimumExampleCountPerLeaf = 25,
-                    LearningRate = 0.1,
+                    LearningRate = 0.05,
                     NumberOfIterations = 50
                 }));
             // Gebruik de LightGBM multiclass trainer met een aantal specifieke parameters om het model te trainen
